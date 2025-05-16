@@ -4,4 +4,25 @@
 <p><strong>Date:</strong> <%= @event.date %></p>
 <p><strong>Created by:</strong> <%= @event.creator.email %></p>
 
+<hr>
+
+<h2>Attendees (<% @event.attendees.count%>)</h2>
+<ul>
+    <% @event.attendees.each do |user| %>
+    <li><%= user.email %></li>
+    <% end %>
+</ul>
+
+<hr>
+
+<% if user_signed_in? %>
+<% if @event.attendees.include?(current_user) %>
+    <%= button_to "Cancel Attendance", event_attendance_path(@event, @event.attendances.find_by(attendee: current_user)), method: :delete %>
+  <% else %>
+    <%= button_to "RSVP to Attend", event_attendances_path(@event), method: :post %>
+  <% end %>
+<% else %>
+  <%= link_to "Sign in to RSVP", new_user_session_path %>
+<% end %>
+
 <%= link_to "Back to Events", events_path %>
