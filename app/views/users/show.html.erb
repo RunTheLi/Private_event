@@ -1,0 +1,18 @@
+<h1><%= @user.username || @user.email %>'s Profile</h1>
+
+<h2>Created Events</h2>
+
+<% if @created_events.any? %>
+  <ul>
+    <% @created_events.each do |event| %>
+      <li>
+        <strong><%= event.name %></strong><br>
+        Location: <%= event.location %><br>
+        Date: <%= event.date %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>This user hasn’t created any events yet.</p>
+<% end %>
+
