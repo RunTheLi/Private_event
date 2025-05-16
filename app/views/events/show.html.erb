@@ -1,0 +1,7 @@
+<h1><%= @event.name %></h1>
+
+<p><strong>Location:</strong> <%= @event.location %></p>
+<p><strong>Date:</strong> <%= @event.date %></p>
+<p><strong>Created by:</strong> <%= @event.creator.email %></p>
+
+<%= link_to "Back to Events", events_path %>
