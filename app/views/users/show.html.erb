@@ -1,14 +1,14 @@
-<h1><%= @user.username || @user.email %>'s Profile</h1>
+<h1><%= @user.username.presence || @user.email %>'s Profile</h1>
+
+<hr>
 
 <h2>Created Events</h2>
-
-<% if @created_events.any? %>
+<% if @user.created_events.any? %>
   <ul>
-    <% @created_events.each do |event| %>
+    <% @user.created_events.each do |event| %>
       <li>
-        <strong><%= event.name %></strong><br>
-        Location: <%= event.location %><br>
-        Date: <%= event.date %>
+        <%= link_to event.name, event_path(event) %>
+        on <%= event.date %>
       </li>
     <% end %>
   </ul>
@@ -16,3 +16,37 @@
   <p>This user hasn’t created any events yet.</p>
 <% end %>
 
+<hr>
+
+<% # Partition attended_events into past vs. future %>
+<% past_events, upcoming_events = @user.attended_events.partition { |e| e.date < Date.today } %>
+
+<h2>Upcoming Events</h2>
+<% if upcoming_events.any? %>
+  <ul>
+    <% upcoming_events.each do |event| %>
+      <li>
+        <%= link_to event.name, event_path(event) %>
+        on <%= event.date %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No upcoming events.</p>
+<% end %>
+
+<hr>
+
+<h2>Past Events</h2>
+<% if past_events.any? %>
+  <ul>
+    <% past_events.each do |event| %>
+      <li>
+        <%= link_to event.name, event_path(event) %>
+        was on <%= event.date %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No past events.</p>
+<% end %>
