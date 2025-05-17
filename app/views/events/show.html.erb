@@ -4,6 +4,13 @@
 <p><strong>Date:</strong> <%= @event.date %></p>
 <p><strong>Created by:</strong> <%= @event.creator.email %></p>
 
+<% if user_signed_in? && current_user == @event.creator %>
+  <p>
+    <%= link_to "Edit Event", edit_event_path(@event) %> |
+    <%= link_to "Delete Event", @event, method: :delete, data: { confirm: "Are you sure?" } %>
+  </p>
+<% end %>
+
 <hr>
 
 <h2>Attendees (<%= @event.attendees.count %>)</h2>

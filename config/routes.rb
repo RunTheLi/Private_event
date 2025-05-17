@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get "users/show"
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  resources :events, only: [ :index, :new, :create, :show ] do
+  resources :events do
     resources :attendances, only: [ :create, :destroy ]
   end
 
