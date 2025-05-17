@@ -23,9 +23,9 @@
   </head>
 
   <body>
-    <nav style="padding: 1em; background-color:rgb(38, 169, 221); border-bottom: 1px solid #ddd;">
+    <nav style="padding: 1em; background-color:	rgb(245,245,245); border-bottom: 2px solid #ddd; border-radius: 20px; height: auto; width: 270px;">
     <%= link_to "Home", root_path %> |
-    <%= link_to "New Events", new-event_path %> |
+    <%= link_to "New Events", new_event_path %> |
 
     <% if user_signed_in? %>
       <%= link_to "My Profile", user_path(current_user) %> |

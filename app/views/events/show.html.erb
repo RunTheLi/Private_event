@@ -6,8 +6,9 @@
 
 <% if user_signed_in? && current_user == @event.creator %>
   <p>
-    <%= link_to "Edit Event", edit_event_path(@event) %> |
-    <%= link_to "Delete Event", @event, method: :delete, data: { confirm: "Are you sure?" } %>
+    <%= button_to "Edit Event", edit_event_path(@event), method: :get, style: "border-radius: 10px; border: 1px solid lightgray;" %>
+  <br>
+    <%= button_to "Delete Event", @event, method: :delete, data: { confirm: "Are you sure?" }, style: "border-radius: 10px; border: 1px solid lightgray;" %>
   </p>
 <% end %>
 
@@ -34,10 +35,10 @@
   <% else %>
     <%= button_to "RSVP to Attend",
           event_attendances_path(@event),
-          method: :post %>
+          method: :post, style: "border-radius: 10px; border: 1px solid lightgray;" %>
   <% end %>
 <% else %>
   <%= link_to "Sign in to RSVP", new_user_session_path %>
 <% end %>
-
-<%= link_to "Back to Events", events_path %>
+<br>
+<%= button_to "Back to Events", events_path, method: :get, style: "border-radius: 10px; border: 1px solid lightgray;" %>

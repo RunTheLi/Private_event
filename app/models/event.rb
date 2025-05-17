@@ -5,5 +5,5 @@ class Event < ApplicationRecord
   has_many :attendees, through: :attendances, source: :attendee
 
   scope :past, -> { where("date < ?", Date.today).order(date: :desc) }
-  scope :upcoming, -> { where("date >= ?", Date.today).order(date: asc) }
+  scope :upcoming, -> { where("date >= ?", Date.today).order(date: :asc) }
 end
